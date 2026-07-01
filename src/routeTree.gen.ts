@@ -10,16 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as PsychologistsRouteImport } from './routes/psychologists'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as OpportunitiesIndexRouteImport } from './routes/opportunities.index'
+import { Route as ExperiencesIndexRouteImport } from './routes/experiences.index'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
 import { Route as OrganisationsSlugRouteImport } from './routes/organisations.$slug'
 import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
+import { Route as CommunityThreadIdRouteImport } from './routes/community.$threadId'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PsychologistsRoute = PsychologistsRouteImport.update({
+  id: '/psychologists',
+  path: '/psychologists',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
@@ -27,9 +40,29 @@ const OpportunitiesRoute = OpportunitiesRouteImport.update({
   path: '/opportunities',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExperiencesRoute = ExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -42,6 +75,16 @@ const OpportunitiesIndexRoute = OpportunitiesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => OpportunitiesRoute,
 } as any)
+const ExperiencesIndexRoute = ExperiencesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExperiencesRoute,
+} as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CommunityRoute,
+} as any)
 const OrganisationsSlugRoute = OrganisationsSlugRouteImport.update({
   id: '/organisations/$slug',
   path: '/organisations/$slug',
@@ -52,67 +95,121 @@ const OpportunitiesIdRoute = OpportunitiesIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => OpportunitiesRoute,
 } as any)
+const CommunityThreadIdRoute = CommunityThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => CommunityRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/events': typeof EventsRoute
+  '/experiences': typeof ExperiencesRouteWithChildren
   '/opportunities': typeof OpportunitiesRouteWithChildren
+  '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
   '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community/': typeof CommunityIndexRoute
+  '/experiences/': typeof ExperiencesIndexRoute
   '/opportunities/': typeof OpportunitiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/events': typeof EventsRoute
+  '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
   '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community': typeof CommunityIndexRoute
+  '/experiences': typeof ExperiencesIndexRoute
   '/opportunities': typeof OpportunitiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/events': typeof EventsRoute
+  '/experiences': typeof ExperiencesRouteWithChildren
   '/opportunities': typeof OpportunitiesRouteWithChildren
+  '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
   '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community/': typeof CommunityIndexRoute
+  '/experiences/': typeof ExperiencesIndexRoute
   '/opportunities/': typeof OpportunitiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/auth'
+    | '/community'
+    | '/events'
+    | '/experiences'
     | '/opportunities'
+    | '/psychologists'
     | '/reset-password'
+    | '/community/$threadId'
     | '/opportunities/$id'
     | '/organisations/$slug'
+    | '/community/'
+    | '/experiences/'
     | '/opportunities/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/auth'
+    | '/events'
+    | '/psychologists'
     | '/reset-password'
+    | '/community/$threadId'
     | '/opportunities/$id'
     | '/organisations/$slug'
+    | '/community'
+    | '/experiences'
     | '/opportunities'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/auth'
+    | '/community'
+    | '/events'
+    | '/experiences'
     | '/opportunities'
+    | '/psychologists'
     | '/reset-password'
+    | '/community/$threadId'
     | '/opportunities/$id'
     | '/organisations/$slug'
+    | '/community/'
+    | '/experiences/'
     | '/opportunities/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
+  CommunityRoute: typeof CommunityRouteWithChildren
+  EventsRoute: typeof EventsRoute
+  ExperiencesRoute: typeof ExperiencesRouteWithChildren
   OpportunitiesRoute: typeof OpportunitiesRouteWithChildren
+  PsychologistsRoute: typeof PsychologistsRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   OrganisationsSlugRoute: typeof OrganisationsSlugRoute
 }
@@ -126,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/psychologists': {
+      id: '/psychologists'
+      path: '/psychologists'
+      fullPath: '/psychologists'
+      preLoaderRoute: typeof PsychologistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/opportunities': {
       id: '/opportunities'
       path: '/opportunities'
@@ -133,11 +237,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpportunitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/experiences': {
+      id: '/experiences'
+      path: '/experiences'
+      fullPath: '/experiences'
+      preLoaderRoute: typeof ExperiencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -154,6 +286,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpportunitiesIndexRouteImport
       parentRoute: typeof OpportunitiesRoute
     }
+    '/experiences/': {
+      id: '/experiences/'
+      path: '/'
+      fullPath: '/experiences/'
+      preLoaderRoute: typeof ExperiencesIndexRouteImport
+      parentRoute: typeof ExperiencesRoute
+    }
+    '/community/': {
+      id: '/community/'
+      path: '/'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof CommunityRoute
+    }
     '/organisations/$slug': {
       id: '/organisations/$slug'
       path: '/organisations/$slug'
@@ -168,8 +314,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OpportunitiesIdRouteImport
       parentRoute: typeof OpportunitiesRoute
     }
+    '/community/$threadId': {
+      id: '/community/$threadId'
+      path: '/$threadId'
+      fullPath: '/community/$threadId'
+      preLoaderRoute: typeof CommunityThreadIdRouteImport
+      parentRoute: typeof CommunityRoute
+    }
   }
 }
+
+interface CommunityRouteChildren {
+  CommunityThreadIdRoute: typeof CommunityThreadIdRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
+}
+
+const CommunityRouteChildren: CommunityRouteChildren = {
+  CommunityThreadIdRoute: CommunityThreadIdRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
+}
+
+const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
+  CommunityRouteChildren,
+)
+
+interface ExperiencesRouteChildren {
+  ExperiencesIndexRoute: typeof ExperiencesIndexRoute
+}
+
+const ExperiencesRouteChildren: ExperiencesRouteChildren = {
+  ExperiencesIndexRoute: ExperiencesIndexRoute,
+}
+
+const ExperiencesRouteWithChildren = ExperiencesRoute._addFileChildren(
+  ExperiencesRouteChildren,
+)
 
 interface OpportunitiesRouteChildren {
   OpportunitiesIdRoute: typeof OpportunitiesIdRoute
@@ -187,8 +366,13 @@ const OpportunitiesRouteWithChildren = OpportunitiesRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
+  CommunityRoute: CommunityRouteWithChildren,
+  EventsRoute: EventsRoute,
+  ExperiencesRoute: ExperiencesRouteWithChildren,
   OpportunitiesRoute: OpportunitiesRouteWithChildren,
+  PsychologistsRoute: PsychologistsRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   OrganisationsSlugRoute: OrganisationsSlugRoute,
 }

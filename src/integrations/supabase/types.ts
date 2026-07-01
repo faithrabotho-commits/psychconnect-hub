@@ -254,6 +254,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "experience_comments_author_profile_fk"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "experience_comments_experience_id_fkey"
             columns: ["experience_id"]
             isOneToOne: false
@@ -324,6 +331,13 @@ export type Database = {
         }
         Relationships: [
           {
+            foreignKeyName: "experiences_author_profile_fk"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "experiences_org_id_fkey"
             columns: ["org_id"]
             isOneToOne: false
@@ -355,6 +369,13 @@ export type Database = {
           thread_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "forum_posts_author_profile_fk"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "forum_posts_thread_id_fkey"
             columns: ["thread_id"]
@@ -392,7 +413,15 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "forum_threads_author_profile_fk"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       notifications: {
         Row: {
