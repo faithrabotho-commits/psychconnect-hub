@@ -89,17 +89,49 @@ function Home() {
         {/* Stats */}
         <section className="flex flex-wrap justify-between gap-6 border-y border-border py-10">
           {[
-            { v: "8,000+", l: "Students", c: "text-blue-brand" },
-            { v: "350+", l: "Organisations", c: "text-teal" },
-            { v: "21", l: "Universities", c: "" },
-            { v: "15,000+", l: "Hours Logged", c: "text-muted-foreground" },
+            { end: 2000, suffix: "+", l: "Students", c: "text-blue-brand" },
+            { end: 500, suffix: "+", l: "Opportunities", c: "text-teal" },
+            { end: 120, suffix: "", l: "Psychologists", c: "" },
+            { end: 21, suffix: "", l: "Universities", c: "text-muted-foreground" },
           ].map((s) => (
             <div key={s.l}>
-              <p className={`font-display text-3xl font-extrabold ${s.c}`}>{s.v}</p>
+              <p className={`font-display text-3xl font-extrabold ${s.c}`}>
+                <CountUp end={s.end} suffix={s.suffix} />
+              </p>
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">{s.l}</p>
             </div>
           ))}
         </section>
+
+        {/* Feature grid */}
+        <section className="py-20">
+          <div className="mb-10 max-w-2xl">
+            <h2 className="font-display text-3xl font-extrabold md:text-4xl">Everything you need in one place.</h2>
+            <p className="mt-2 text-muted-foreground">Notion-meets-LinkedIn-meets-ChatGPT — but built for South African psychology students.</p>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { icon: BookOpen, t: "AI Research Assistant", c: "Paste an article — get aim, method, results, limitations and APA reference in seconds.", to: "/research", bg: "bg-teal/10", fg: "text-teal" },
+              { icon: ListChecks, t: "AI Task Planner", c: "Enter your deadlines and volunteering — get a balanced week with priorities.", to: "/planner", bg: "bg-blue-brand/10", fg: "text-blue-brand" },
+              { icon: Mail, t: "AI Email Generator", c: "Application, thank-you, follow-up — professional emails, editable and copy-ready.", to: "/email", bg: "bg-lavender", fg: "text-lavender-foreground" },
+              { icon: MessageCircle, t: "PsychBot", c: "Ask about volunteering, Honours prep, HPCSA categories, interview tips.", to: "/psychbot", bg: "bg-teal/10", fg: "text-teal" },
+              { icon: Heart, t: "Volunteer Community", c: "Real stories, ratings, and tips from students who've been where you are.", to: "/experiences", bg: "bg-blue-brand/10", fg: "text-blue-brand" },
+              { icon: MapPin, t: "Find Opportunities", c: "Verified placements on an interactive map, filtered by province and category.", to: "/opportunities", bg: "bg-lavender", fg: "text-lavender-foreground" },
+            ].map((f) => (
+              <Link key={f.t} to={f.to} className="group rounded-3xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-black/5">
+                <div className={`grid size-11 place-items-center rounded-2xl ${f.bg} ${f.fg}`}>
+                  <f.icon className="size-5" />
+                </div>
+                <h3 className="mt-4 font-display text-lg font-bold">{f.t}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{f.c}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-teal opacity-0 transition-opacity group-hover:opacity-100">
+                  Open <ArrowRight className="size-3" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
 
         {/* Featured Placements + map */}
         <section className="py-20">
