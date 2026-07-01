@@ -148,10 +148,12 @@ function OpportunitiesPage() {
           {/* Map */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <div className="overflow-hidden rounded-3xl border border-border bg-card">
-              <OpportunitiesMap
-                pins={mapPins}
-                onSelect={(id) => navigate({ to: "/opportunities/$id", params: { id } })}
-              />
+              <Suspense fallback={<div className="h-96 w-full animate-pulse bg-muted" />}>
+                <OpportunitiesMap
+                  pins={mapPins}
+                  onSelect={(id) => navigate({ to: "/opportunities/$id", params: { id } })}
+                />
+              </Suspense>
               <div className="border-t border-border p-4 text-xs text-muted-foreground">
                 {mapPins.length} placements plotted across South Africa
               </div>
