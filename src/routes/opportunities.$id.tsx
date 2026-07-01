@@ -107,7 +107,7 @@ function OpportunityDetail() {
           )}
           <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold capitalize">{opp.opp_type.replace("_"," ")}</span>
           {opp.commitment && <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold">{opp.commitment}</span>}
-          {(opp.categories ?? []).map((c) => <span key={c} className="rounded-full bg-lavender px-3 py-1 text-xs font-semibold text-lavender-foreground">{c}</span>)}
+          {(opp.categories ?? []).map((c: string) => <span key={c} className="rounded-full bg-lavender px-3 py-1 text-xs font-semibold text-lavender-foreground">{c}</span>)}
         </div>
 
         <article className="prose prose-slate mt-10 max-w-none">

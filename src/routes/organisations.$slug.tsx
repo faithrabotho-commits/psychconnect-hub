@@ -47,7 +47,7 @@ function OrgPage() {
         {org.description && <p className="mt-6 max-w-3xl text-lg text-muted-foreground">{org.description}</p>}
 
         <div className="mt-4 flex flex-wrap gap-2">
-          {(org.categories ?? []).map((c) => <span key={c} className="rounded-full bg-lavender px-3 py-1 text-xs font-semibold text-lavender-foreground">{c}</span>)}
+          {(org.categories ?? []).map((c: string) => <span key={c} className="rounded-full bg-lavender px-3 py-1 text-xs font-semibold text-lavender-foreground">{c}</span>)}
         </div>
 
         <section className="mt-12">
