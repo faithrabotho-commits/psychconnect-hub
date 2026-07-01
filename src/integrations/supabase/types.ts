@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_generations: {
+        Row: {
+          created_at: string
+          id: string
+          input: Json
+          kind: string
+          output: Json
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          input?: Json
+          kind: string
+          output?: Json
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          input?: Json
+          kind?: string
+          output?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
       applications: {
         Row: {
           cover_note: string | null

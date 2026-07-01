@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useRoles } from "@/hooks/use-auth";
-import { SiteShell } from "@/components/layout/site-shell";
+import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Bookmark, ClipboardList, Clock, Award, Sparkles, LogOut, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 
@@ -77,7 +77,7 @@ function Dashboard() {
   const isPsych = roles.includes("psychologist");
 
   return (
-    <SiteShell>
+    <DashboardShell>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-10 flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -190,6 +190,6 @@ function Dashboard() {
           </section>
         )}
       </div>
-    </SiteShell>
+    </DashboardShell>
   );
 }

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useMemo, useState } from "react";
-import { SiteShell } from "@/components/layout/site-shell";
+import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Send, Sparkles, Loader2 } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/psychbot")({
@@ -37,7 +37,7 @@ function PsychBot() {
   };
 
   return (
-    <SiteShell>
+    <DashboardShell>
       <div className="mx-auto max-w-3xl px-6 py-10">
         <header className="mb-6 flex items-center gap-3">
           <div className="grid size-12 place-items-center rounded-2xl bg-gradient-to-tr from-teal to-blue-brand text-white">
@@ -90,6 +90,6 @@ function PsychBot() {
           </button>
         </form>
       </div>
-    </SiteShell>
+    </DashboardShell>
   );
 }
