@@ -7,6 +7,7 @@ import { MapPin, Search, Filter } from "lucide-react";
 import { OpportunitiesMap } from "@/components/opportunities-map";
 
 export const Route = createFileRoute("/opportunities/")({
+  ssr: false,
   head: () => ({
     meta: [
       { title: "Volunteer Opportunities — PsychFest" },
