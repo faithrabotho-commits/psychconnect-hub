@@ -26,6 +26,7 @@ import { Route as OrganisationsSlugRouteImport } from './routes/organisations.$s
 import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
 import { Route as CommunityThreadIdRouteImport } from './routes/community.$threadId'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AuthenticatedResearchRouteImport } from './routes/_authenticated/research'
 import { Route as AuthenticatedPsychbotRouteImport } from './routes/_authenticated/psychbot'
 import { Route as AuthenticatedEmailRouteImport } from './routes/_authenticated/email'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -114,6 +115,11 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedResearchRoute = AuthenticatedResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedPsychbotRoute = AuthenticatedPsychbotRouteImport.update({
   id: '/psychbot',
   path: '/psychbot',
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email': typeof AuthenticatedEmailRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
+  '/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
@@ -161,6 +168,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email': typeof AuthenticatedEmailRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
+  '/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
@@ -184,6 +192,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/email': typeof AuthenticatedEmailRoute
   '/_authenticated/psychbot': typeof AuthenticatedPsychbotRoute
+  '/_authenticated/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
   '/opportunities/$id': typeof OpportunitiesIdRoute
@@ -207,6 +216,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/email'
     | '/psychbot'
+    | '/research'
     | '/api/chat'
     | '/community/$threadId'
     | '/opportunities/$id'
@@ -225,6 +235,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/email'
     | '/psychbot'
+    | '/research'
     | '/api/chat'
     | '/community/$threadId'
     | '/opportunities/$id'
@@ -247,6 +258,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/email'
     | '/_authenticated/psychbot'
+    | '/_authenticated/research'
     | '/api/chat'
     | '/community/$threadId'
     | '/opportunities/$id'
@@ -392,6 +404,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/research': {
+      id: '/_authenticated/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof AuthenticatedResearchRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/psychbot': {
       id: '/_authenticated/psychbot'
       path: '/psychbot'
@@ -420,12 +439,14 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEmailRoute: typeof AuthenticatedEmailRoute
   AuthenticatedPsychbotRoute: typeof AuthenticatedPsychbotRoute
+  AuthenticatedResearchRoute: typeof AuthenticatedResearchRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEmailRoute: AuthenticatedEmailRoute,
   AuthenticatedPsychbotRoute: AuthenticatedPsychbotRoute,
+  AuthenticatedResearchRoute: AuthenticatedResearchRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
