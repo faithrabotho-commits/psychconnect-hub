@@ -27,6 +27,7 @@ import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
 import { Route as CommunityThreadIdRouteImport } from './routes/community.$threadId'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedPsychbotRouteImport } from './routes/_authenticated/psychbot'
+import { Route as AuthenticatedEmailRouteImport } from './routes/_authenticated/email'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
@@ -118,6 +119,11 @@ const AuthenticatedPsychbotRoute = AuthenticatedPsychbotRouteImport.update({
   path: '/psychbot',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedEmailRoute = AuthenticatedEmailRouteImport.update({
+  id: '/email',
+  path: '/email',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
@@ -152,6 +159,7 @@ export interface FileRoutesByTo {
   '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/email': typeof AuthenticatedEmailRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
@@ -174,6 +182,7 @@ export interface FileRoutesById {
   '/psychologists': typeof PsychologistsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/email': typeof AuthenticatedEmailRoute
   '/_authenticated/psychbot': typeof AuthenticatedPsychbotRoute
   '/api/chat': typeof ApiChatRoute
   '/community/$threadId': typeof CommunityThreadIdRoute
@@ -196,6 +205,7 @@ export interface FileRouteTypes {
     | '/psychologists'
     | '/reset-password'
     | '/dashboard'
+    | '/email'
     | '/psychbot'
     | '/api/chat'
     | '/community/$threadId'
@@ -213,6 +223,7 @@ export interface FileRouteTypes {
     | '/psychologists'
     | '/reset-password'
     | '/dashboard'
+    | '/email'
     | '/psychbot'
     | '/api/chat'
     | '/community/$threadId'
@@ -234,6 +245,7 @@ export interface FileRouteTypes {
     | '/psychologists'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/email'
     | '/_authenticated/psychbot'
     | '/api/chat'
     | '/community/$threadId'
@@ -387,6 +399,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPsychbotRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/email': {
+      id: '/_authenticated/email'
+      path: '/email'
+      fullPath: '/email'
+      preLoaderRoute: typeof AuthenticatedEmailRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -399,11 +418,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmailRoute: typeof AuthenticatedEmailRoute
   AuthenticatedPsychbotRoute: typeof AuthenticatedPsychbotRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmailRoute: AuthenticatedEmailRoute,
   AuthenticatedPsychbotRoute: AuthenticatedPsychbotRoute,
 }
 
