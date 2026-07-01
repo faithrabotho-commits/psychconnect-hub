@@ -29,7 +29,7 @@ function ExperiencesPage() {
   const q = useQuery({
     queryKey: ["experiences", cat],
     queryFn: async () => {
-      let query = supabase.from("experiences").select("*, profiles!experiences_author_id_fkey(full_name, university)").order("created_at", { ascending: false });
+      let query = supabase.from("experiences").select("*, profiles!experiences_author_profile_fk(full_name, university)").order("created_at", { ascending: false });
       if (cat) query = query.contains("categories", [cat]);
       const { data, error } = await query;
       if (error) throw error;

@@ -26,7 +26,7 @@ function CommunityPage() {
   const q = useQuery({
     queryKey: ["threads", cat],
     queryFn: async () => {
-      let query = supabase.from("forum_threads").select("*, profiles!forum_threads_author_id_fkey(full_name)").order("created_at", { ascending: false });
+      let query = supabase.from("forum_threads").select("*, profiles!forum_threads_author_profile_fk(full_name)").order("created_at", { ascending: false });
       if (cat) query = query.eq("category", cat);
       const { data, error } = await query;
       if (error) throw error;
