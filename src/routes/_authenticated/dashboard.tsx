@@ -77,7 +77,7 @@ function Dashboard() {
   const isPsych = roles.includes("psychologist");
 
   return (
-    <SiteShell>
+    <DashboardShell>
       <div className="mx-auto max-w-6xl px-6 py-12">
         <header className="mb-10 flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -190,6 +190,6 @@ function Dashboard() {
           </section>
         )}
       </div>
-    </SiteShell>
+    </DashboardShell>
   );
 }
