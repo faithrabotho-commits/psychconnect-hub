@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteShell } from "@/components/layout/site-shell";
 import { MapPin, Search, Filter } from "lucide-react";
-import { OpportunitiesMap } from "@/components/opportunities-map";
+
+const OpportunitiesMap = lazy(() => import("@/components/opportunities-map").then((m) => ({ default: m.OpportunitiesMap })));
 
 export const Route = createFileRoute("/opportunities/")({
   ssr: false,
