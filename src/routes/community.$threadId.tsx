@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/community/$threadId")({
   loader: async ({ params }) => {
-    const { data, error } = await supabase.from("forum_threads").select("*, profiles!forum_threads_author_id_fkey(full_name)").eq("id", params.threadId).maybeSingle();
+    const { data, error } = await supabase.from("forum_threads").select("*, profiles!forum_threads_author_profile_fk(full_name)").eq("id", params.threadId).maybeSingle();
     if (error) throw error;
     if (!data) throw notFound();
     return data;
@@ -26,7 +26,7 @@ function Thread() {
   const posts = useQuery({
     queryKey: ["thread-posts", t.id],
     queryFn: async () => {
-      const { data } = await supabase.from("forum_posts").select("*, profiles!forum_posts_author_id_fkey(full_name)").eq("thread_id", t.id).order("created_at", { ascending: true });
+      const { data } = await supabase.from("forum_posts").select("*, profiles!forum_posts_author_profile_fk(full_name)").eq("thread_id", t.id).order("created_at", { ascending: true });
       return data ?? [];
     },
   });
