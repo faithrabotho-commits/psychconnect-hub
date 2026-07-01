@@ -3,7 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { SiteShell } from "@/components/layout/site-shell";
 import heroImg from "@/assets/hero-student.jpg";
-import { ArrowRight, Sparkles, MapPin, Users } from "lucide-react";
+import { ArrowRight, Sparkles, MapPin, Users, Brain, ListChecks, Mail, MessageCircle, Heart, BookOpen } from "lucide-react";
+import { CountUp } from "@/components/count-up";
 
 export const Route = createFileRoute("/")({
   head: () => ({
