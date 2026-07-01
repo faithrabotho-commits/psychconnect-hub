@@ -9,38 +9,321 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as PsychologistsRouteImport } from './routes/psychologists'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as ExperiencesRouteImport } from './routes/experiences'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as OpportunitiesIndexRouteImport } from './routes/opportunities.index'
+import { Route as ExperiencesIndexRouteImport } from './routes/experiences.index'
+import { Route as CommunityIndexRouteImport } from './routes/community.index'
+import { Route as OrganisationsSlugRouteImport } from './routes/organisations.$slug'
+import { Route as OpportunitiesIdRouteImport } from './routes/opportunities.$id'
+import { Route as CommunityThreadIdRouteImport } from './routes/community.$threadId'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as AuthenticatedPsychbotRouteImport } from './routes/_authenticated/psychbot'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PsychologistsRoute = PsychologistsRouteImport.update({
+  id: '/psychologists',
+  path: '/psychologists',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExperiencesRoute = ExperiencesRouteImport.update({
+  id: '/experiences',
+  path: '/experiences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OpportunitiesIndexRoute = OpportunitiesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OpportunitiesRoute,
+} as any)
+const ExperiencesIndexRoute = ExperiencesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ExperiencesRoute,
+} as any)
+const CommunityIndexRoute = CommunityIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CommunityRoute,
+} as any)
+const OrganisationsSlugRoute = OrganisationsSlugRouteImport.update({
+  id: '/organisations/$slug',
+  path: '/organisations/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesIdRoute = OpportunitiesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => OpportunitiesRoute,
+} as any)
+const CommunityThreadIdRoute = CommunityThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => CommunityRoute,
+} as any)
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedPsychbotRoute = AuthenticatedPsychbotRouteImport.update({
+  id: '/psychbot',
+  path: '/psychbot',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/events': typeof EventsRoute
+  '/experiences': typeof ExperiencesRouteWithChildren
+  '/opportunities': typeof OpportunitiesRouteWithChildren
+  '/psychologists': typeof PsychologistsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/psychbot': typeof AuthenticatedPsychbotRoute
+  '/api/chat': typeof ApiChatRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
+  '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community/': typeof CommunityIndexRoute
+  '/experiences/': typeof ExperiencesIndexRoute
+  '/opportunities/': typeof OpportunitiesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/events': typeof EventsRoute
+  '/psychologists': typeof PsychologistsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/psychbot': typeof AuthenticatedPsychbotRoute
+  '/api/chat': typeof ApiChatRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
+  '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community': typeof CommunityIndexRoute
+  '/experiences': typeof ExperiencesIndexRoute
+  '/opportunities': typeof OpportunitiesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
+  '/community': typeof CommunityRouteWithChildren
+  '/events': typeof EventsRoute
+  '/experiences': typeof ExperiencesRouteWithChildren
+  '/opportunities': typeof OpportunitiesRouteWithChildren
+  '/psychologists': typeof PsychologistsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/psychbot': typeof AuthenticatedPsychbotRoute
+  '/api/chat': typeof ApiChatRoute
+  '/community/$threadId': typeof CommunityThreadIdRoute
+  '/opportunities/$id': typeof OpportunitiesIdRoute
+  '/organisations/$slug': typeof OrganisationsSlugRoute
+  '/community/': typeof CommunityIndexRoute
+  '/experiences/': typeof ExperiencesIndexRoute
+  '/opportunities/': typeof OpportunitiesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/community'
+    | '/events'
+    | '/experiences'
+    | '/opportunities'
+    | '/psychologists'
+    | '/reset-password'
+    | '/dashboard'
+    | '/psychbot'
+    | '/api/chat'
+    | '/community/$threadId'
+    | '/opportunities/$id'
+    | '/organisations/$slug'
+    | '/community/'
+    | '/experiences/'
+    | '/opportunities/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/auth'
+    | '/events'
+    | '/psychologists'
+    | '/reset-password'
+    | '/dashboard'
+    | '/psychbot'
+    | '/api/chat'
+    | '/community/$threadId'
+    | '/opportunities/$id'
+    | '/organisations/$slug'
+    | '/community'
+    | '/experiences'
+    | '/opportunities'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/about'
+    | '/auth'
+    | '/community'
+    | '/events'
+    | '/experiences'
+    | '/opportunities'
+    | '/psychologists'
+    | '/reset-password'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/psychbot'
+    | '/api/chat'
+    | '/community/$threadId'
+    | '/opportunities/$id'
+    | '/organisations/$slug'
+    | '/community/'
+    | '/experiences/'
+    | '/opportunities/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
+  CommunityRoute: typeof CommunityRouteWithChildren
+  EventsRoute: typeof EventsRoute
+  ExperiencesRoute: typeof ExperiencesRouteWithChildren
+  OpportunitiesRoute: typeof OpportunitiesRouteWithChildren
+  PsychologistsRoute: typeof PsychologistsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiChatRoute: typeof ApiChatRoute
+  OrganisationsSlugRoute: typeof OrganisationsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/psychologists': {
+      id: '/psychologists'
+      path: '/psychologists'
+      fullPath: '/psychologists'
+      preLoaderRoute: typeof PsychologistsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experiences': {
+      id: '/experiences'
+      path: '/experiences'
+      fullPath: '/experiences'
+      preLoaderRoute: typeof ExperiencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +331,139 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/opportunities/': {
+      id: '/opportunities/'
+      path: '/'
+      fullPath: '/opportunities/'
+      preLoaderRoute: typeof OpportunitiesIndexRouteImport
+      parentRoute: typeof OpportunitiesRoute
+    }
+    '/experiences/': {
+      id: '/experiences/'
+      path: '/'
+      fullPath: '/experiences/'
+      preLoaderRoute: typeof ExperiencesIndexRouteImport
+      parentRoute: typeof ExperiencesRoute
+    }
+    '/community/': {
+      id: '/community/'
+      path: '/'
+      fullPath: '/community/'
+      preLoaderRoute: typeof CommunityIndexRouteImport
+      parentRoute: typeof CommunityRoute
+    }
+    '/organisations/$slug': {
+      id: '/organisations/$slug'
+      path: '/organisations/$slug'
+      fullPath: '/organisations/$slug'
+      preLoaderRoute: typeof OrganisationsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities/$id': {
+      id: '/opportunities/$id'
+      path: '/$id'
+      fullPath: '/opportunities/$id'
+      preLoaderRoute: typeof OpportunitiesIdRouteImport
+      parentRoute: typeof OpportunitiesRoute
+    }
+    '/community/$threadId': {
+      id: '/community/$threadId'
+      path: '/$threadId'
+      fullPath: '/community/$threadId'
+      preLoaderRoute: typeof CommunityThreadIdRouteImport
+      parentRoute: typeof CommunityRoute
+    }
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/psychbot': {
+      id: '/_authenticated/psychbot'
+      path: '/psychbot'
+      fullPath: '/psychbot'
+      preLoaderRoute: typeof AuthenticatedPsychbotRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPsychbotRoute: typeof AuthenticatedPsychbotRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPsychbotRoute: AuthenticatedPsychbotRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
+interface CommunityRouteChildren {
+  CommunityThreadIdRoute: typeof CommunityThreadIdRoute
+  CommunityIndexRoute: typeof CommunityIndexRoute
+}
+
+const CommunityRouteChildren: CommunityRouteChildren = {
+  CommunityThreadIdRoute: CommunityThreadIdRoute,
+  CommunityIndexRoute: CommunityIndexRoute,
+}
+
+const CommunityRouteWithChildren = CommunityRoute._addFileChildren(
+  CommunityRouteChildren,
+)
+
+interface ExperiencesRouteChildren {
+  ExperiencesIndexRoute: typeof ExperiencesIndexRoute
+}
+
+const ExperiencesRouteChildren: ExperiencesRouteChildren = {
+  ExperiencesIndexRoute: ExperiencesIndexRoute,
+}
+
+const ExperiencesRouteWithChildren = ExperiencesRoute._addFileChildren(
+  ExperiencesRouteChildren,
+)
+
+interface OpportunitiesRouteChildren {
+  OpportunitiesIdRoute: typeof OpportunitiesIdRoute
+  OpportunitiesIndexRoute: typeof OpportunitiesIndexRoute
+}
+
+const OpportunitiesRouteChildren: OpportunitiesRouteChildren = {
+  OpportunitiesIdRoute: OpportunitiesIdRoute,
+  OpportunitiesIndexRoute: OpportunitiesIndexRoute,
+}
+
+const OpportunitiesRouteWithChildren = OpportunitiesRoute._addFileChildren(
+  OpportunitiesRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
+  CommunityRoute: CommunityRouteWithChildren,
+  EventsRoute: EventsRoute,
+  ExperiencesRoute: ExperiencesRouteWithChildren,
+  OpportunitiesRoute: OpportunitiesRouteWithChildren,
+  PsychologistsRoute: PsychologistsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  ApiChatRoute: ApiChatRoute,
+  OrganisationsSlugRoute: OrganisationsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
