@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth, useRoles } from "@/hooks/use-auth";
-import { SiteShell } from "@/components/layout/site-shell";
+import { DashboardShell } from "@/components/layout/dashboard-shell";
 import { Bookmark, ClipboardList, Clock, Award, Sparkles, LogOut, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 

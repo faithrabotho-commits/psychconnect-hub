@@ -28,6 +28,7 @@ import { Route as CommunityThreadIdRouteImport } from './routes/community.$threa
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 import { Route as AuthenticatedResearchRouteImport } from './routes/_authenticated/research'
 import { Route as AuthenticatedPsychbotRouteImport } from './routes/_authenticated/psychbot'
+import { Route as AuthenticatedPlannerRouteImport } from './routes/_authenticated/planner'
 import { Route as AuthenticatedEmailRouteImport } from './routes/_authenticated/email'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
@@ -125,6 +126,11 @@ const AuthenticatedPsychbotRoute = AuthenticatedPsychbotRouteImport.update({
   path: '/psychbot',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPlannerRoute = AuthenticatedPlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedEmailRoute = AuthenticatedEmailRouteImport.update({
   id: '/email',
   path: '/email',
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email': typeof AuthenticatedEmailRoute
+  '/planner': typeof AuthenticatedPlannerRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
   '/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
@@ -167,6 +174,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/email': typeof AuthenticatedEmailRoute
+  '/planner': typeof AuthenticatedPlannerRoute
   '/psychbot': typeof AuthenticatedPsychbotRoute
   '/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
@@ -191,6 +199,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/email': typeof AuthenticatedEmailRoute
+  '/_authenticated/planner': typeof AuthenticatedPlannerRoute
   '/_authenticated/psychbot': typeof AuthenticatedPsychbotRoute
   '/_authenticated/research': typeof AuthenticatedResearchRoute
   '/api/chat': typeof ApiChatRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/dashboard'
     | '/email'
+    | '/planner'
     | '/psychbot'
     | '/research'
     | '/api/chat'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/dashboard'
     | '/email'
+    | '/planner'
     | '/psychbot'
     | '/research'
     | '/api/chat'
@@ -257,6 +268,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/dashboard'
     | '/_authenticated/email'
+    | '/_authenticated/planner'
     | '/_authenticated/psychbot'
     | '/_authenticated/research'
     | '/api/chat'
@@ -418,6 +430,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPsychbotRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/planner': {
+      id: '/_authenticated/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof AuthenticatedPlannerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/email': {
       id: '/_authenticated/email'
       path: '/email'
@@ -438,6 +457,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedEmailRoute: typeof AuthenticatedEmailRoute
+  AuthenticatedPlannerRoute: typeof AuthenticatedPlannerRoute
   AuthenticatedPsychbotRoute: typeof AuthenticatedPsychbotRoute
   AuthenticatedResearchRoute: typeof AuthenticatedResearchRoute
 }
@@ -445,6 +465,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedEmailRoute: AuthenticatedEmailRoute,
+  AuthenticatedPlannerRoute: AuthenticatedPlannerRoute,
   AuthenticatedPsychbotRoute: AuthenticatedPsychbotRoute,
   AuthenticatedResearchRoute: AuthenticatedResearchRoute,
 }
